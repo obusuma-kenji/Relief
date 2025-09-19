@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>社労士リリーフ事業提案</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .slide {
+            background: white;
+            margin: 30px 0;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .title-slide {
+            background: linear-gradient(135deg, #2E7D32 0%, #4CAF50 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .title-slide h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .title-slide .subtitle {
+            font-size: 1.5em;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .title-slide .author {
+            font-size: 1.2em;
+            margin-top: 40px;
+            border-top: 2px solid rgba(255,255,255,0.3);
+            padding-top: 20px;
+        }
+        
+        h2 {
+            color: #2E7D32;
+            font-size: 2.2em;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #4CAF50;
+            padding-bottom: 10px;
+        }
+        
+        h3 {
+            color: #1976D2;
+            font-size: 1.5em;
+            margin: 25px 0 15px 0;
+        }
+        
+        .problem-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 30px 0;
+        }
+        
+        .problem-card {
+            background: #ffebee;
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 5px solid #f44336;
+        }
+        
+        .solution-card {
+            background: #e8f5e8;
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 5px solid #4CAF50;
+        }
+        
+        .flow-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 40px 0;
+        }
+        
+        .flow-step {
+            background: linear-gradient(135deg, #1976D2 0%, #42A5F5 100%);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 15px;
+            margin: 10px 0;
+            width: 80%;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(25,118,210,0.3);
+        }
+        
+        .flow-step:before {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-top: 20px solid #1976D2;
+        }
+        
+        .flow-step:last-child:before {
+            display: none;
+        }
+        
+        .flow-step h4 {
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .pricing-card {
+            background: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(255,107,53,0.3);
+        }
+        
+        .pricing-card h4 {
+            font-size: 1.4em;
+            margin-bottom: 15px;
+        }
+        
+        .pricing-card .price {
+            font-size: 2em;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+        
+        .checklist {
+            list-style: none;
+            margin: 20px 0;
+        }
+        
+        .checklist li {
+            padding: 8px 0;
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .checklist li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #4CAF50;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        
+        .highlight {
+            background: linear-gradient(120deg, #a8e6cf 0%, #dcedc1 100%);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #4CAF50;
+        }
+        
+        .warning {
+            background: linear-gradient(120deg, #ffd3a5 0%, #fd9853 100%);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #FF6B35;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin: 30px 0;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .stat-number {
+            font-size: 3em;
+            font-weight: bold;
+            color: #2E7D32;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 1.1em;
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        @media (max-width: 768px) {
+            .slide {
+                padding: 20px;
+                margin: 15px 0;
+            }
+            
+            .title-slide h1 {
+                font-size: 2em;
+            }
+            
+            .problem-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- タイトルスライド -->
+        <div class="slide title-slide">
+            <h1>社労士リリーフ事業提案</h1>
+            <div class="subtitle">個人事務所の「止めない」を実現する新サービス</div>
+            <div class="author">えがおワークラボ 上田典史会長 様</div>
+        </div>
+
+        <!-- ① 問題提起 -->
+        <div class="slide">
+            <h2>① 問題提起：個人事務所の社労士BCP問題</h2>
+            
+            <div class="stats">
+                <div class="stat-item">
+                    <span class="stat-number">15,000</span>
+                    <div class="stat-label">個人社労士事務所</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">100%</span>
+                    <div class="stat-label">所長依存リスク</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">0</span>
+                    <div class="stat-label">代替手段</div>
+                </div>
+            </div>
+
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <h3>現状の課題</h3>
+                    <ul class="checklist">
+                        <li>所長の病気・入院 = 業務完全停止</li>
+                        <li>法定期限案件への対応不能</li>
+                        <li>顧客への迷惑・信頼失墜</li>
+                        <li>損害賠償リスク</li>
+                    </ul>
+                </div>
+                
+                <div class="problem-card">
+                    <h3>対策が進まない理由</h3>
+                    <ul class="checklist">
+                        <li>場当たり的な相互扶助に依存</li>
+                        <li>体系的なBCPの欠如</li>
+                        <li>セキュアな代行体制の不在</li>
+                        <li>標準化されたプロセスがない</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ② 課題の抽出 -->
+        <div class="slide">
+            <h2>② 課題の抽出：クライアント企業に迷惑をかけないためにすべきこと</h2>
+            
+            <div class="solution-card">
+                <h3>1. 期日厳守の体制確保</h3>
+                <ul class="checklist">
+                    <li>法定期限のある手続きの継続実施</li>
+                    <li>顧客への適切な情報提供・状況説明</li>
+                </ul>
+            </div>
+
+            <div class="solution-card">
+                <h3>2. 情報セキュリティの徹底</h3>
+                <ul class="checklist">
+                    <li>特定個人情報の適切な管理・移管</li>
+                    <li>社労士法21条（守秘義務）の完全遵守</li>
+                </ul>
+            </div>
+
+            <div class="solution-card">
+                <h3>3. 品質維持と透明性</h3>
+                <ul class="checklist">
+                    <li>業務の標準化・文書化</li>
+                    <li>進捗状況の可視化・報告</li>
+                </ul>
+            </div>
+
+            <div class="solution-card">
+                <h3>4. スムーズな復帰支援</h3>
+                <ul class="checklist">
+                    <li>完全な業務引継ぎ</li>
+                    <li>段階的復帰のサポート</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ③ 解決方法 -->
+        <div class="slide">
+            <h2>③ 解決方法：えがおワークラボ『社労士リリーフ』の活用</h2>
+            
+            <div class="highlight">
+                <h3>サービスの特徴</h3>
+                <p><strong>「個人事務所の社労士が病気・怪我で業務を止めない」BCP支援</strong></p>
+            </div>
+
+            <div class="problem-grid">
+                <div class="solution-card">
+                    <h4>24時間初動対応</h4>
+                    <p>発動申請から統括PM・担当社労士をアサイン</p>
+                </div>
+                <div class="solution-card">
+                    <h4>期日最優先処理</h4>
+                    <p>法定期限案件を最優先で処理</p>
+                </div>
+                <div class="solution-card">
+                    <h4>完全セキュリティ</h4>
+                    <p>二名原則・監査ログ・分離保管</p>
+                </div>
+                <div class="solution-card">
+                    <h4>一気通貫支援</h4>
+                    <p>平時準備→発動→代行→復帰まで</p>
+                </div>
+            </div>
+
+            <div class="warning">
+                <h3>えがおワークラボとの親和性</h3>
+                <ul class="checklist">
+                    <li><strong>既存理念との整合</strong>：人と組織を『守る』『育てる』『糺す』</li>
+                    <li><strong>専門性の活用</strong>：労務管理・組織コンサルの知見</li>
+                    <li><strong>社会的意義</strong>：社労士業界全体への貢献</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ④ サービスイメージ -->
+        <div class="slide">
+            <h2>④ 『社労士リリーフ』サービスイメージ</h2>
+            
+            <div class="flow-container">
+                <div class="flow-step">
+                    <h4>【平時】スタンバイ契約</h4>
+                    <p>契約締結（NDA/基本契約）・業務棚卸し・マニュアル化<br>
+                    年1回BCP演習・緊急連絡網整備</p>
+                </div>
+                
+                <div class="flow-step">
+                    <h4>【発動】T+24h 初動対応</h4>
+                    <p>統括PM配置・担当社労士アサイン<br>
+                    顧客告知・同意取得・期限案件の即時着手</p>
+                </div>
+                
+                <div class="flow-step">
+                    <h4>【運用】継続代行</h4>
+                    <p>期日厳守の業務実行・週次進捗レポート<br>
+                    品質チェック・監査・証跡管理・保全</p>
+                </div>
+                
+                <div class="flow-step">
+                    <h4>【復帰】完全引継ぎ</h4>
+                    <p>未了案件の整理・控・ログの返還<br>
+                    権限移管・段階復帰支援</p>
+                </div>
+            </div>
+
+            <h3>料金体系</h3>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h4>平時スタンバイ</h4>
+                    <div class="price">月額2万円</div>
+                </div>
+                <div class="pricing-card">
+                    <h4>発動初動パック</h4>
+                    <div class="price">10万円/回</div>
+                </div>
+                <div class="pricing-card">
+                    <h4>通常運用</h4>
+                    <div class="price">時間/案件単価</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ⑤ 検討課題 -->
+        <div class="slide">
+            <h2>⑤ 検討課題</h2>
+            
+            <h3>事業化に向けた主要検討点</h3>
+            
+            <div class="problem-grid">
+                <div class="solution-card">
+                    <h4>1. 市場性の検証</h4>
+                    <ul class="checklist">
+                        <li>ターゲット事務所のニーズ調査</li>
+                        <li>価格感度・支払意向の確認</li>
+                    </ul>
+                </div>
+                
+                <div class="solution-card">
+                    <h4>2. 実施体制の構築</h4>
+                    <ul class="checklist">
+                        <li>統括PM・担当社労士の確保</li>
+                        <li>全国対応可能な人材ネットワーク</li>
+                    </ul>
+                </div>
+                
+                <div class="solution-card">
+                    <h4>3. 法務・コンプライアンス</h4>
+                    <ul class="checklist">
+                        <li>社労士法・個人情報保護法の詳細確認</li>
+                        <li>契約書雛形・運用ルールの策定</li>
+                    </ul>
+                </div>
+                
+                <div class="solution-card">
+                    <h4>4. システム基盤</h4>
+                    <ul class="checklist">
+                        <li>発動フォーム・進捗管理システム</li>
+                        <li>セキュリティ・監査機能</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="highlight">
+                <h3>次のステップ</h3>
+                <ul class="checklist">
+                    <li><strong>パイロット事業</strong>の実施検討（10-20事務所）</li>
+                    <li><strong>詳細ビジネスプラン</strong>の策定</li>
+                    <li><strong>投資判断</strong>のための収支計画作成</li>
+                </ul>
+            </div>
+
+            <div class="warning" style="text-align: center; margin-top: 40px;">
+                <h3>ご検討・ご質問をお聞かせください</h3>
+                <p style="font-size: 1.2em; margin-top: 15px;">社労士業界の未来を一緒に創りましょう</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
